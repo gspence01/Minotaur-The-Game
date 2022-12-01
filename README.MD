@@ -8,10 +8,15 @@ The classical Greek myth of the Minotaur centers around Theseus, son of Aegeus, 
 I love the idea of this classic and want to implament it in a game where the player navigates through a dark maze, aided by the hints left by a golden string trailing behind the character. 
 
 ##### Gameplay:
-This game will play a lot like PacMan. Similar to PacMan, the player will navigate a maze, encounter different enemies hiding there, collect EXP/weapons to easily kill any enemy and make their way down each level until, finally reaching the Minotaur.
+This game is the lovechild of PacMan and a classic RPG game. Similar to PacMan, the player will navigate a maze. However, they will also encounter different enemies hiding there, collect EXP/weapons to easily kill any enemy and make their way down each level until, finally, reaching the Minotaur.
+
+##### Note:
+For this specific class project, I'm just going to create one level and place the minotaur there. However, in the future, I hope to expand the game to have multiple weapons, maze difficulties, and enemies for the player to gain extra EXP.
 
 ## Assets
 I plan on creating my own assets for Theseus, the Minotaur, and varying weapons with pixel art
 
 ## Mechanics
-add more here
+The player will navigate with the arrow keys. Running into an object/weapon will allow the player to add it to inventory and use in future encounters with enemies.
+
+If the player runs into an enemy, there will be a fight, where the player either wins or loses based on EXP and weapon possession.
