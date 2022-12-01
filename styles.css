@@ -1,0 +1,36 @@
+h1, #exp{
+    font-family: 'Macondo Swash Caps', cursive;
+    color: rgb(200, 200, 55);
+    text-shadow: 3px 3px rgb(38, 48, 3);
+}
+
+#exp{
+    font-size: larger;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(0deg, #2f1b06 50%,#6f1206 100%);
+}
+
+#gameLayout{
+    margin: 50px;
+}
+
+#gameCanvas{
+    box-shadow: 5px 5px 15px rgb(12, 12, 1);
+}
+
+hr{
+    width: 50%;
+    border: 0px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(251, 210, 3, 0.75), rgba(255, 255, 255, 0));
+    height:1px;
+}
+
+#instructions{
+    color: rgba(252, 255, 205, 0.75);
+}
