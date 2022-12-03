@@ -1,0 +1,20 @@
+{
+  "name": "minotaur-the-game",
+  "version": "1.0.0",
+  "description": ">\"Let the people of Athens this year draw lots for only six young men, instead of seven,\" said he, \"I will myself be the seventh; and let the Minotaur devour me if he can!\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gspence01/Minotaur-The-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gspence01/Minotaur-The-Game/issues"
+  },
+  "homepage": "https://github.com/gspence01/Minotaur-The-Game#readme"
+}
