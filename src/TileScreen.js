@@ -13,17 +13,13 @@ export default class TileMap{
 
     };
 
-    testDraw(ctx){
-        ctx.drawImage(this.floor, 32, 32)
-    }
-
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
     0 = floor
     1 = wall
     2 = hero
     3 = enemy*/
 
-    /*map = {
+    map = {
         columns: 3,
         rows: 3,
         tsize: this.tileSize,
@@ -37,41 +33,38 @@ export default class TileMap{
         ],
         //this method returns index of the array e.g. (i want tile at coord (1,1) = 1*3+1 = index 4)
         getTile(x, y){
-            return [x*this.columns+y];
+            const tile = [x*this.columns+y];
+            return this.tiles[tile];
         }
     };
 
-    drawElement(ctx){
-        ctx.drawImage(this.floor, 32, 32)
+    drawElement(ctx, url, x, y, size){
+        ctx.drawImage(url, x*this.tileSize, y*this.tileSize, size, size);
 
-    }*/
+    };
 
-    /*drawMap(ctx){
+    drawMap(ctx){
         for(let column = 0; column<this.map.columns; column++){
             for(let row = 0; row<this.map.rows; row++){
                 const tile = this.map.getTile(column, row);
                 //if statements to assign number to tile
                 //draws wall when tile is id'd as 1
                 if(tile === 1){
-                    ctx.drawImage(this.wall, column*this.map.tsize, row*this.map.tsize, this.map.tsize, this.map.tsize);
+                    this.drawElement(ctx, this.wall, column, row, this.tileSize);
                 };
 
                 //draws floor when tile = 0
                 if(tile === 0){
-                    if(tile === 1){
-                        ctx.drawImage(this.floor, column*this.map.tsize, row*this.map.tsize, this.map.tsize, this.map.tsize);
-                    };
+                    this.drawElement(ctx, this.floor, column, row, this.tileSize);
                 }
             }
         }
-        this.drawElement(ctx, this.floor)
-        
         
     };
     //makes the canvas the size of however big the planned map is
     setCanvasSize(canvas){
         canvas.width = this.map.columns * this.tileSize;
         canvas.height = this.map.rows*this.tileSize
-    }*/
+    }
 
 }
