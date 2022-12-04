@@ -13,13 +13,17 @@ export default class TileMap{
 
     };
 
+    testDraw(ctx){
+        ctx.drawImage(this.floor, 32, 32)
+    }
+
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
     0 = floor
     1 = wall
     2 = hero
     3 = enemy*/
 
-    map = {
+    /*map = {
         columns: 3,
         rows: 3,
         tsize: this.tileSize,
@@ -37,8 +41,13 @@ export default class TileMap{
         }
     };
 
-    drawMap(ctx){
-        /*for(let column = 0; column<this.map.columns; column++){
+    drawElement(ctx){
+        ctx.drawImage(this.floor, 32, 32)
+
+    }*/
+
+    /*drawMap(ctx){
+        for(let column = 0; column<this.map.columns; column++){
             for(let row = 0; row<this.map.rows; row++){
                 const tile = this.map.getTile(column, row);
                 //if statements to assign number to tile
@@ -54,8 +63,8 @@ export default class TileMap{
                     };
                 }
             }
-        }*/
-        ctx.drawImage(this.floor, 0, 0, 100, 100)
+        }
+        this.drawElement(ctx, this.floor)
         
         
     };
@@ -63,6 +72,6 @@ export default class TileMap{
     setCanvasSize(canvas){
         canvas.width = this.map.columns * this.tileSize;
         canvas.height = this.map.rows*this.tileSize
-    }
+    }*/
 
 }
