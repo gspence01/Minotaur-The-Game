@@ -11,4 +11,4 @@ function gameLoop(){
     tileMap.drawMap(contxt)
 }
 
-setInterval(gameLoop, 1000)
+setInterval(gameLoop, 1000);
