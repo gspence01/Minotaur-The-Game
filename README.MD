@@ -14,7 +14,8 @@ This game is the lovechild of PacMan and a classic RPG game. Similar to PacMan, 
 For this specific class project, I'm just going to create one level and place the minotaur there. However, in the future, I hope to expand the game to have multiple weapons, maze difficulties, and enemies for the player to gain extra EXP.
 
 ## Assets
-I plan on creating my own assets for Theseus, the Minotaur, and varying weapons with pixel art
+I plan on creating my own assets for Theseus, the Minotaur, and varying weapons with pixel art.
+All images were created with the website [JSPaint](https://jspaint.app/).
 
 ## Mechanics
 The player will navigate with the arrow keys. Running into an object/weapon will allow the player to add it to inventory and use in future encounters with enemies.
