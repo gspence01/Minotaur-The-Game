@@ -16,6 +16,7 @@ For this specific class project, I'm just going to create one level and place th
 ## Assets
 I plan on creating my own assets for Theseus, the Minotaur, and varying weapons with pixel art.
 All images were created with the website [JSPaint](https://jspaint.app/).
+I created all my gifs on [EZGif.com](https://ezgif.com/).
 
 ## Mechanics
 The player will navigate with the arrow keys. Running into an object/weapon will allow the player to add it to inventory and use in future encounters with enemies.
