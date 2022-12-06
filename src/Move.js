@@ -19,6 +19,6 @@ export default class Move{
             this.y+=1;
         }
         let test = [this.x,this.y];
-        console.log(test);
+        
     }
 }

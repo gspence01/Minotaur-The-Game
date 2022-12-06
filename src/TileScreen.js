@@ -11,7 +11,8 @@ export default class TileMap{
 
         this.floor = new Image();
         this.floor.src = "../assets/floor.png";
-        
+
+        this.hero = new Hero(this);
 
     };
 
@@ -30,7 +31,7 @@ export default class TileMap{
         //test array
         tiles: [
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
+            1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,1,
             1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
             1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,0,1,0,0,1,
@@ -63,8 +64,8 @@ export default class TileMap{
     };
 
     drawMap(ctx){
-        for(let column = 0; column<this.map.columns; column++){
-            for(let row = 0; row<this.map.rows; row++){
+        for(let row = 0; row<this.map.rows; row++){
+            for(let column = 0; column<this.map.columns; column++){
                 const tile = this.map.getTile(column, row);
                 //if statements to assign number to tile
                 //draws wall when tile is id'd as 1
@@ -84,6 +85,18 @@ export default class TileMap{
     setCanvasSize(canvas){
         canvas.width = this.map.columns * this.tileSize;
         canvas.height = this.map.rows*this.tileSize
+    }
+
+    paintHero(ctx){
+        for(let row = 0; row<this.map.rows; row++){
+            for(let column = 0; column<this.map.columns; column++){
+                const tile = this.map.getTile(column, row);
+                if(tile === 2){
+                    //this.drawElement(ctx, this.floor, column, row, this.tileSize);
+                    this.hero.addHero(ctx, row*this.tileSize, column*this.tileSize);
+                };
+            }
+        }
     }
 
 }
