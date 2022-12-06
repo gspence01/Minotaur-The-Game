@@ -1,3 +1,5 @@
+import Hero from "./Hero.js"
+
 //TileScreen.js will house the class that constructs the maze
 
 export default class TileMap{
