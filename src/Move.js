@@ -1,11 +1,14 @@
+//move class will change the character's direction based on event listeners and move character
+
 export default class Move{
     constructor(x, y){
         this.x = x;
         this.y = y;
     }
 
-    moveDirection(){
-        let direction = '';
+    
+
+    moveDirection(direction){
         if(direction === 'west'){
             this.x-=1;
         }
@@ -18,7 +21,5 @@ export default class Move{
         if(direction === 'south'){
             this.y+=1;
         }
-        let test = [this.x,this.y];
-        
     }
 }

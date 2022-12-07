@@ -1,4 +1,5 @@
 import Hero from "./Hero.js"
+import Move from "./Move.js"
 
 //TileScreen.js will house the class that constructs the maze
 
@@ -31,7 +32,7 @@ export default class TileMap{
         //test array
         tiles: [
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,1,
+            1,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
             1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
             1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,0,1,0,0,1,
@@ -70,12 +71,12 @@ export default class TileMap{
                 //if statements to assign number to tile
                 //draws wall when tile is id'd as 1
                 if(tile === 1){
-                    this.drawElement(ctx, this.wall, column, row, this.tileSize);
+                    this.drawElement(ctx, this.wall, row, column, this.tileSize);
                 };
 
                 //draws floor when tile = 0
                 if(tile === 0){
-                    this.drawElement(ctx, this.floor, column, row, this.tileSize);
+                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
                 }
             }
         }
@@ -87,12 +88,12 @@ export default class TileMap{
         canvas.height = this.map.rows*this.tileSize
     }
 
-    paintHero(ctx){
+    paintHero(ctx, direction){
         for(let row = 0; row<this.map.rows; row++){
             for(let column = 0; column<this.map.columns; column++){
                 const tile = this.map.getTile(column, row);
                 if(tile === 2){
-                    //this.drawElement(ctx, this.floor, column, row, this.tileSize);
+                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
                     this.hero.addHero(ctx, row*this.tileSize, column*this.tileSize);
                 };
             }
