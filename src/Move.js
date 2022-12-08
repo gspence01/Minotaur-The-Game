@@ -6,8 +6,6 @@ export default class Move{
         this.y = y;
     }
 
-    
-
     moveDirection(direction){
         if(direction === 'west'){
             this.x-=1;
@@ -21,5 +19,9 @@ export default class Move{
         if(direction === 'south'){
             this.y+=1;
         }
+        return [this.x, this.y];
     }
+
+    
+
 }

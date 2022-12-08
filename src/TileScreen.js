@@ -15,6 +15,8 @@ export default class TileMap{
 
         this.hero = new Hero(this);
 
+        this.moveChar = new Move(32, 32);
+
     };
 
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
@@ -88,16 +90,23 @@ export default class TileMap{
         canvas.height = this.map.rows*this.tileSize
     }
 
-    paintHero(ctx, direction){
+    /*paintHero(ctx, direction){
         for(let row = 0; row<this.map.rows; row++){
             for(let column = 0; column<this.map.columns; column++){
                 const tile = this.map.getTile(column, row);
                 if(tile === 2){
                     this.drawElement(ctx, this.floor, row, column, this.tileSize);
-                    this.hero.addHero(ctx, row*this.tileSize, column*this.tileSize);
+                    this.hero.addHero(ctx, this.moveChar.x, this.moveChar.y);
                 };
             }
         }
+    }*/
+
+    paintHero(ctx, x, y){
+        this.hero.addHero(ctx, x, y)
     }
+    
+    
+        
 
 }
