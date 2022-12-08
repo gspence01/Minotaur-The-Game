@@ -1,5 +1,4 @@
 import Hero from "./Hero.js"
-import Move from "./Move.js"
 
 //TileScreen.js will house the class that constructs the maze
 
@@ -15,8 +14,6 @@ export default class TileMap{
 
         this.hero = new Hero(this);
 
-        this.moveChar = new Move(32, 32);
-
     };
 
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
@@ -31,10 +28,9 @@ export default class TileMap{
         tsize: this.tileSize,
         //note to self: tiles is stored in 1d array rather than 2d because 1d allows array values to be read direactly --> smoother loading
 
-        //test array
         tiles: [
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            1,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
+            1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
             1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
             1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,0,1,0,0,1,
@@ -71,13 +67,13 @@ export default class TileMap{
             for(let column = 0; column<this.map.columns; column++){
                 const tile = this.map.getTile(column, row);
                 //if statements to assign number to tile
-                //draws wall when tile is id'd as 1
-                if(tile === 1){
+                //draws wall when tile is id'd as 0
+                if(tile === 0){
                     this.drawElement(ctx, this.wall, row, column, this.tileSize);
                 };
 
-                //draws floor when tile = 0
-                if(tile === 0){
+                //draws floor when tile = 1
+                if(tile === 1){
                     this.drawElement(ctx, this.floor, row, column, this.tileSize);
                 }
             }
@@ -90,23 +86,8 @@ export default class TileMap{
         canvas.height = this.map.rows*this.tileSize
     }
 
-    /*paintHero(ctx, direction){
-        for(let row = 0; row<this.map.rows; row++){
-            for(let column = 0; column<this.map.columns; column++){
-                const tile = this.map.getTile(column, row);
-                if(tile === 2){
-                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
-                    this.hero.addHero(ctx, this.moveChar.x, this.moveChar.y);
-                };
-            }
-        }
-    }*/
-
     paintHero(ctx, x, y){
         this.hero.addHero(ctx, x, y)
     }
     
-    
-        
-
 }
