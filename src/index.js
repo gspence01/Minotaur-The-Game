@@ -65,6 +65,9 @@ class TileMap{
         this.sword = new Image();
         this.sword.src = '../assets/sword.png'
 
+        this.bat = new Image();
+        this.bat.src = '../assets/bat.png'
+
     };
 
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
@@ -82,18 +85,18 @@ class TileMap{
         tiles: [
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
             1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,
-            1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,
+            1,0,0,0,0,0,2,1,1,1,1,1,1,0,0,0,1,0,0,1,
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
             1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,0,1,0,0,1,
             1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,1,1,0,1,
             1,0,0,0,1,1,1,1,1,0,0,1,0,0,0,0,0,1,0,1,
             1,1,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,
-            1,1,0,0,1,0,0,1,1,0,0,1,0,1,0,1,1,0,0,1,
+            1,1,3,0,1,0,0,1,1,0,0,1,0,1,0,1,1,2,0,1,
             1,1,1,0,1,0,0,1,0,0,0,1,0,1,0,1,1,0,1,1,
             1,0,1,0,1,0,0,1,0,0,0,1,0,1,0,1,1,0,1,1,
             1,0,1,0,1,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,
             1,0,1,0,1,0,0,1,1,1,1,1,0,0,1,1,1,0,0,1,
-            1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+            1,0,0,0,1,1,0,0,0,0,2,0,0,0,0,0,0,0,0,1,
             1,1,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,1,0,1,
             1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,0,1,
             1,0,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,0,1,
@@ -120,19 +123,25 @@ class TileMap{
                 //if statements to assign number to tile
                 //draws wall when tile is id'd as 0
                 if(tile === 0){
-                    this.drawElement(ctx, this.wall, row, column, this.tileSize);
+                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
                     
                 };
 
                 //draws floor when tile = 1
                 if(tile === 1){
-                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
+                    this.drawElement(ctx, this.wall, row, column, this.tileSize);
                     
                 }
 
                 if(tile === 2){
-                    this.drawElement(ctx, this.wall, row, column, this.tileSize);
+                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
                     this.drawElement(ctx, this.sword, row, column, this.tileSize);
+                    
+                };
+
+                if(tile === 3){
+                    this.drawElement(ctx, this.floor, row, column, this.tileSize);
+                    this.drawElement(ctx, this.bat, row, column, this.tileSize);
                     
                 };
             }
@@ -191,9 +200,9 @@ function moveCharacter(direction){
     //JK THIS DOESN'T WORK LOL
     //THIS COULD WORK FOR COLLIDING INTO MONSTERS OR WEAPONS, THOUGH?
 
-    let charTileX = Math.floor(x/tileMap.hero.tileSize);
+    /*let charTileX = Math.floor(x/tileMap.hero.tileSize);
     let charTileY = Math.floor(y/tileMap.hero.tileSize);
-    let charIndex = charTileY*tileMap.map.columns+charTileX;
+    let charIndex = charTileY*tileMap.map.columns+charTileX;*/
     
         if(direction === 'west'){
             
@@ -215,7 +224,7 @@ function pickItem(){
     let charTileX = Math.floor(x/tileMap.hero.tileSize);
     let charTileY = Math.floor(y/tileMap.hero.tileSize);
     let charIndex = charTileY*tileMap.map.columns+charTileX;
-    let itemIndex = tileMap.map.tiles.indexOf(2);
+    let itemIndex = tileMap.map.tiles.indexOf(2, charIndex);
     if(charIndex === itemIndex){
         tileMap.map.tiles[itemIndex] = 0;
         exp+=5;
@@ -224,12 +233,32 @@ function pickItem(){
 
 }
 
+function fight(){
+    let charTileX = Math.floor(x/tileMap.hero.tileSize);
+    let charTileY = Math.floor(y/tileMap.hero.tileSize);
+    let charIndex = charTileY*tileMap.map.columns+charTileX;
+    let enemyIndex = tileMap.map.tiles.indexOf(3, charIndex);
+    if(charIndex === enemyIndex){
+        if(exp<10){
+            if(confirm("Oh no! You ran into a cave bat!\n You did not have enough exp to beat it and you died!\n restart?")){
+
+            }
+        }
+        else{
+            window.alert("Oh no! You ran into a cave bat!\n Fortunately, you had enough items to beat it and gained 10 more points!")
+            tileMap.map.tiles[enemyIndex] = 0
+        }
+    }
+}
+
 function gameLoop(){
     tileMap.drawMap(contxt);
 
     tileMap.paintHero(contxt, x, y);
 
     pickItem();
+
+    fight();
 
     moveCharacter(direction);
 }
