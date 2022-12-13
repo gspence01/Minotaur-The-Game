@@ -7,6 +7,11 @@ let direction = null;
 const canvas = document.getElementById("gameCanvas");
 const contxt = canvas.getContext("2d");
 
+const expCount = document.getElementById("exp");
+let exp = 0;
+
+expCount.innerHTML = `EXP: ${exp}`
+
 class Hero{
     constructor(tileMap, direction){
         this.tileMap = tileMap;
@@ -55,12 +60,17 @@ class TileMap{
 
         this.hero = new Hero(this);
 
+        this.walkable = true;
+
+        this.sword = new Image();
+        this.sword.src = '../assets/sword.png'
+
     };
 
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
     0 = floor
     1 = wall
-    2 = hero
+    2 = item
     3 = enemy*/
 
     map = {
@@ -71,7 +81,7 @@ class TileMap{
 
         tiles: [
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-            1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
+            1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,
             1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1,0,0,1,
             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,
             1,0,0,1,1,1,1,1,0,0,1,1,1,1,0,0,1,0,0,1,
@@ -111,12 +121,20 @@ class TileMap{
                 //draws wall when tile is id'd as 0
                 if(tile === 0){
                     this.drawElement(ctx, this.wall, row, column, this.tileSize);
+                    
                 };
 
                 //draws floor when tile = 1
                 if(tile === 1){
                     this.drawElement(ctx, this.floor, row, column, this.tileSize);
+                    
                 }
+
+                if(tile === 2){
+                    this.drawElement(ctx, this.wall, row, column, this.tileSize);
+                    this.drawElement(ctx, this.sword, row, column, this.tileSize);
+                    
+                };
             }
         }
         
@@ -130,20 +148,6 @@ class TileMap{
     paintHero(ctx, x, y){
         this.hero.addHero(ctx, x, y)
     }
-
-    /*getCoords(){
-        let array = [];
-        for(let row = 0; row<this.map.rows; row++){
-            for(let column = 0; column<this.map.columns; column++){
-                const tile = this.map.getTile(column, row);
-                if(tile === 1){
-                    array.push([row*this.tileSize, column*this.tileSize])
-                };
-                
-            }
-        }
-        return array;
-    }*/
     
 }
 
@@ -176,38 +180,56 @@ document.addEventListener('keydown', function(e){
 document.addEventListener('keyup', function(e){
     direction = null;
 })
-//movedirection should only change x or y when character's position IS NOT at specified positions of the walls
-//TileMap method to return true or false, assign to variable and pass into if statement here 
-//method to 
 
-//let wallCoords = tileMap.getCoords();
+
+//position of blocks:
+
+
 function moveCharacter(direction){
-    /*for(let i = 0; i<wallCoords.length; i++){
-        if (x<=wallCoords[i][0]+32 && x<=wallCoords[i][0] || y>=wallCoords[i][1]+32 && y<=wallCoords[i][1]){
-            console.log("wall")
-        }
-        else{
-            console.log('floor')
-        }
-    }*/
-    if(direction === 'west'){
-        x-=1;
-    };
-    if(direction === 'east'){
-        x+=1;
-    };
-    if(direction === 'north'){
-        y-=1;
-    };
-    if(direction === 'south'){
-        y+=1;
-    };
+    //these variables represent the index that the hero is at on the tilemap
+    //I originally wanted to compare the positions of the wall tile with the character, but I couldn't figure out how to get it to work without it creasing the local server when I implemented it in my set interval function
+    //JK THIS DOESN'T WORK LOL
+    //THIS COULD WORK FOR COLLIDING INTO MONSTERS OR WEAPONS, THOUGH?
+
+    let charTileX = Math.floor(x/tileMap.hero.tileSize);
+    let charTileY = Math.floor(y/tileMap.hero.tileSize);
+    let charIndex = charTileY*tileMap.map.columns+charTileX;
+    
+        if(direction === 'west'){
+            
+            x-=1;
+        };
+        if(direction === 'east'){
+            x+=1;
+        };
+        if(direction === 'north'){
+            y-=1;
+        };
+        if(direction === 'south'){
+            y+=1;
+        };
+    
+}
+
+function pickItem(){
+    let charTileX = Math.floor(x/tileMap.hero.tileSize);
+    let charTileY = Math.floor(y/tileMap.hero.tileSize);
+    let charIndex = charTileY*tileMap.map.columns+charTileX;
+    let itemIndex = tileMap.map.tiles.indexOf(2);
+    if(charIndex === itemIndex){
+        tileMap.map.tiles[itemIndex] = 0;
+        exp+=5;
+        expCount.innerHTML = `EXP: ${exp}`
+    }
+
 }
 
 function gameLoop(){
     tileMap.drawMap(contxt);
 
     tileMap.paintHero(contxt, x, y);
+
+    pickItem();
 
     moveCharacter(direction);
 }
