@@ -15,6 +15,70 @@ body{
     background: linear-gradient(0deg, #2f1b06 50%,#6f1206 100%);
 }
 
+.loss{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 6, 6, .75);
+}
+
+.loss-content{
+    background-color: #6f1206;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid rgb(200, 200, 55);
+    width: 80%;
+}
+
+.loss-content > p{
+    font-family: 'Macondo Swash Caps', cursive;
+    color: rgb(200, 200, 55);
+}
+
+#restart{
+    background-color: rgb(242, 236, 183);
+    border: none;
+    font-size: large;
+    padding: 16px 8px;
+    border-radius: 40%;
+}
+
+.win{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 6, 6, .75);
+}
+
+.win-content{
+    background-color: #6f1206;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid rgb(200, 200, 55);
+    width: 80%;
+}
+
+.win-content > p{
+    font-family: 'Macondo Swash Caps', cursive;
+    color: rgb(200, 200, 55);
+}
+
+#close{
+    background-color: rgb(242, 236, 183);
+    border: none;
+    font-size: large;
+    padding: 16px 8px;
+    border-radius: 40%;
+}
+
 #gameLayout{
     margin: 50px;
 }

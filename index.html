@@ -12,6 +12,21 @@
 </head>
 <body>
     <h1>MINOTAUR: the labrynth</h1>
+    <div id = "win-popup" class = "win">
+        <div class = "win-content">
+            <p>Oh no! You ran into a bat!</p>
+            <p>Fortunately, you had enough exp to kill it!</p>
+            <p>Here's 10 exp for winning!</p>
+            <button id = "close">Continue</button>
+        </div>
+    </div>
+    <div id = "loss-popup" class = "loss">
+        <div class = "loss-content">
+            <p>Oh no! You ran into a bat!</p>
+            <p>You did not have enough skill or weapons to defeat it and it sucked your blood dry!</p>
+            <button id = "restart" >Restart?</button>
+        </div>
+    </div>
     <div id="gameLayout">
         <div id = "exp">EXP: 0</div>
         <canvas id = "gameCanvas"></canvas>
@@ -19,5 +34,6 @@
     <hr>
     <div id="instructions">Add game instructions here</div>
     <script type="module" src="src/index.js"></script>
+    
 </body>
 </html>

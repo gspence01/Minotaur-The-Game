@@ -12,6 +12,12 @@ let exp = 0;
 
 expCount.innerHTML = `EXP: ${exp}`
 
+var winBox = document.getElementById("win-popup");
+var lossBox = document.getElementById("loss-popup");
+var continueGameBtn = document.getElementById("close");
+var restartBtn = document.getElementById("restart");
+
+
 class Hero{
     constructor(tileMap, direction){
         this.tileMap = tileMap;
@@ -242,20 +248,37 @@ function resetGame(){
     tileMap = new TileMap(tileSize);
 }
 
+function displayWin(){
+    
+    winBox.style.display = "block";
+    continueGameBtn.onclick = function(){
+        winBox.style.display = "none";
+    }
+    
+}
+
+function displayLoss(){
+    lossBox.style.display = "block";
+    restartBtn.onclick = function(){
+        lossBox.style.display = "none";
+        resetGame();
+    }
+}
+
 function fight(){
-    let charTileX = Math.floor(x/tileMap.hero.tileSize);
-    let charTileY = Math.floor(y/tileMap.hero.tileSize);
+    let charTileX = Math.floor((x+16)/tileMap.hero.tileSize);
+    let charTileY = Math.floor((y+16)/tileMap.hero.tileSize);
     let charIndex = charTileY*tileMap.map.columns+charTileX;
     let enemyIndex = tileMap.map.tiles.indexOf(3, charIndex);
     if(charIndex === enemyIndex){
         if(exp<10){
-            if(confirm("Oh no! You ran into a cave bat!\n You did not have enough exp to beat it and you died!\n restart?")){
-                resetGame();
-            }
+            
+            displayLoss();
         }
         else{
-            window.alert("Oh no! You ran into a cave bat!\n Fortunately, you had enough items to beat it and gained 10 more points!")
+            
             tileMap.map.tiles[enemyIndex] = 0
+            displayWin();
         }
     }
 }
