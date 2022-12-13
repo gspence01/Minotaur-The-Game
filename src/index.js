@@ -4,7 +4,7 @@ let x = 32;
 let y = 32;
 let direction = null;
 
-const canvas = document.getElementById("gameCanvas");
+let canvas = document.getElementById("gameCanvas");
 const contxt = canvas.getContext("2d");
 
 const expCount = document.getElementById("exp");
@@ -233,6 +233,15 @@ function pickItem(){
 
 }
 
+function resetGame(){
+    x = 32;
+    y = 32;
+    direction = null;
+    exp = 0;
+    expCount.innerHTML = `EXP: ${exp}`
+    tileMap = new TileMap(tileSize);
+}
+
 function fight(){
     let charTileX = Math.floor(x/tileMap.hero.tileSize);
     let charTileY = Math.floor(y/tileMap.hero.tileSize);
@@ -241,7 +250,7 @@ function fight(){
     if(charIndex === enemyIndex){
         if(exp<10){
             if(confirm("Oh no! You ran into a cave bat!\n You did not have enough exp to beat it and you died!\n restart?")){
-
+                resetGame();
             }
         }
         else{
