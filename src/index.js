@@ -74,6 +74,9 @@ class TileMap{
         this.bat = new Image();
         this.bat.src = '../assets/bat.png'
 
+        this.gate = new Image();
+        this.gate.src = '../assets/gate.png'
+
     };
 
     /* below, I will define a map that will be a nested array. Each index for the outer will represent the rows, the indexes of the inner define the floor/wall tiles of each column
@@ -99,7 +102,7 @@ class TileMap{
             1,1,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,
             1,1,3,0,1,0,0,1,1,0,0,1,0,1,0,1,1,2,0,1,
             1,1,1,0,1,0,0,1,0,0,0,1,0,1,0,1,1,0,1,1,
-            1,0,1,0,1,0,0,1,0,0,0,1,0,1,0,1,1,0,1,1,
+            1,0,1,0,1,0,0,1,0,4,0,1,0,1,0,1,1,0,1,1,
             1,0,1,0,1,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,
             1,0,1,0,1,0,0,1,1,1,1,1,0,0,1,1,1,0,0,1,
             1,0,0,0,1,1,0,0,0,0,2,0,0,0,0,0,0,0,0,1,
@@ -148,6 +151,12 @@ class TileMap{
                 if(tile === 3){
                     this.drawElement(ctx, this.floor, row, column, this.tileSize);
                     this.drawElement(ctx, this.bat, row, column, this.tileSize);
+                    
+                };
+
+                if(tile === 4){
+                    this.drawElement(ctx, this.gate, row, column, this.tileSize);
+                    
                     
                 };
             }

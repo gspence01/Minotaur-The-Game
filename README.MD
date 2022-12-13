@@ -22,3 +22,6 @@ I created all my gifs on [EZGif.com](https://ezgif.com/).
 The player will navigate with the arrow keys. Running into an object/weapon will allow the player to add it to inventory and use in future encounters with enemies.
 
 If the player runs into an enemy, there will be a fight, where the player either wins or loses based on EXP and weapon possession.
+
+## Left out stuff
+Due to time constraints, I wasn't able to fully finish my game. I still need to complete a collision detection function that allows my character to interact with the walls vs the floor of the tilemap. I also want to implement a function that allows the enemies/monsters to run after the player, varying levels, and a scrolling world layout, so that I can create bigger maze maps without it running out of boundary with the window. This is a huge project that I'll be working on for a long time as I get better with navigating Javascript logic, but hopefully, this small rough draft is enough for now!
